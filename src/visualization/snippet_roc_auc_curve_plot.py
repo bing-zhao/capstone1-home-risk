@@ -1,0 +1,13 @@
+from sklearn.metrics import roc_curve, auc
+probas_ = model.predict_proba(X_test)
+fpr, tpr, thresholds = roc_curve(y_test, probas_[:, 1])
+roc_auc = auc(fpr, tpr)
+plt.plot(fpr, tpr, lw=1, alpha=1.0, label='(AUC = %0.2f)' % (roc_auc))
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver operating characteristic')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.0])
+plt.legend()
+plt.show()
